@@ -230,4 +230,4 @@ a.contact__num:hover{color:var(--lime)}
 .seq__rail{position:absolute;z-index:2;left:50%;bottom:49px;width:min(180px,38vw);height:1px;background:rgba(255,255,255,.2);transform:translateX(-50%)}
 .seq__rail span{display:block;width:0;height:100%;background:var(--lime)}
 @media(max-width:768px){.seq{height:380vh}.seq__stage{font-size:clamp(2.35rem,10.6vw,3.5rem);padding:clamp(82px,13svh,112px) 8px clamp(128px,18svh,152px)}.seq__stage[data-stage="2"]{font-size:clamp(2rem,8.9vw,3rem)}.ball-loading{font-size:.65rem}}
-@media(prefers-reduced-motion:reduce){.ball{opacity:.16!important;transform:translate(-50%,-50%)!important;left:50%!important;top:50svh!important;width:min(100vw,100svh)!important;height:min(100vw,100svh)!important}.seq__stage{transition:none}}
+@media(prefers-reduced-motion:reduce){.seq__stage{transition:none}}

@@ -14,7 +14,6 @@
   var count = Math.max(1, Number(boot.count) || 192);
   var version = encodeURIComponent(boot.version || '1');
   var ctx = canvas.getContext('2d', { alpha: false });
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   var saveData = !!(navigator.connection && navigator.connection.saveData);
   var mobile = window.innerWidth <= 768;
   var step = saveData ? 2 : 1;
@@ -222,7 +221,6 @@
 
   function seedFrames() {
     enqueue(1, true);
-    if (reduced.matches) return;
     [8, 4, 2, 1].forEach(function (stride) {
       for (var n = 1; n <= count; n += stride) if (allowed(n)) enqueue(n, false);
     });
@@ -303,14 +301,12 @@
     if (hidden) return;
     var y = window.scrollY;
     var p = scrollProgress();
-    target = reduced.matches ? 1 : frameFor(p);
-    if (!reduced.matches) {
-      var diff = target - current;
-      if (Math.abs(diff) > .2) {
-        current += diff * .25;
-        if (Math.abs(target - current) < .25) current = target;
-      } else current = target;
-    } else current = 1;
+    target = frameFor(p);
+    var diff = target - current;
+    if (Math.abs(diff) > .2) {
+      current += diff * .25;
+      if (Math.abs(target - current) < .25) current = target;
+    } else current = target;
 
     var frame = clamp(Math.round(current), 1, count);
     if (bitmaps.has(frame)) {
@@ -320,20 +316,11 @@
       drawNearest(frame);
       enqueue(frame, true);
     }
-    if (!reduced.matches) preloadAround(frame);
+    preloadAround(frame);
 
-    if (reduced.matches) {
-      wrapper.style.left = '50%';
-      wrapper.style.top = '50svh';
-      wrapper.style.transform = 'translate(-50%,-50%)';
-      wrapper.style.width = 'min(100vw,100svh)';
-      wrapper.style.height = 'min(100vw,100svh)';
-      wrapper.style.opacity = '.16';
-    } else {
-      var inSequence = y >= sequenceTop && y <= sequenceEnd;
-      var pose = inSequence ? poses.seq : poseAt(y);
-      setPose(pose, inSequence);
-    }
+    var inSequence = y >= sequenceTop && y <= sequenceEnd;
+    var pose = inSequence ? poses.seq : poseAt(y);
+    setPose(pose, inSequence);
     var pin = clamp((y - sequenceTop) / Math.max(1, sequenceEnd - sequenceTop), 0, 1);
     seq.setAttribute('data-active', String(Math.min(2, Math.floor(pin * 3))));
     var rail = document.getElementById('seqProgress');
@@ -346,10 +333,8 @@
     var y = window.scrollY;
     if (y !== lastY) direction = y > lastY ? 1 : -1;
     lastY = y;
-    if (!reduced.matches) {
-      target = frameFor(scrollProgress());
-      preloadAround(target);
-    }
+    target = frameFor(scrollProgress());
+    preloadAround(target);
     requestUpdate();
   }
 
@@ -393,7 +378,7 @@
   wrapper.style.left = 'calc(50% + ' + (mobile ? 16 : 22) + 'vw)';
   wrapper.style.top = (mobile ? 53 : 52) + 'svh';
   wrapper.style.transform = 'translate(-50%,-50%)';
-  wrapper.style.opacity = reduced.matches ? '.16' : (mobile ? '.42' : '.48');
+  wrapper.style.opacity = mobile ? '.42' : '.48';
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', resetForViewport, { passive: true });
@@ -403,11 +388,6 @@
     hidden = document.hidden;
     if (hidden && raf) { window.cancelAnimationFrame(raf); raf = 0; }
     else if (!hidden) { pump(); calcAnchors(); onScroll(); }
-  });
-  reduced.addEventListener('change', function () {
-    current = reduced.matches ? 1 : frameFor(scrollProgress());
-    if (!reduced.matches) seedFrames();
-    requestUpdate();
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(calcAnchors);
 
