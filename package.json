@@ -1,0 +1,13 @@
+{
+  "name": "dev-homes-football-tournament",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dev Homes Football Tournament 2026 – public site + organizer admin (Node, zero runtime dependencies)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node scripts/test-api.mjs"
+  },
+  "engines": { "node": ">=22.13" },
+  "optionalDependencies": { "pg": "^8.13.0" }
+}

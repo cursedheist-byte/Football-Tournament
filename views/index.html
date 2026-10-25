@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{tournamentName}} | 9-a-side football · {{dateLong}}</title>
+<meta name="description" content="{{metaDescription}}">
+<meta name="theme-color" content="#050505">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{tournamentName}}">
+<meta property="og:description" content="{{metaDescription}}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/css/site.css?v={{assetVersion}}">
+<script type="application/ld+json">{{{jsonLd}}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="ball" aria-hidden="true"><canvas id="ballCanvas"></canvas></div>
+<div class="vignette" aria-hidden="true"></div>
+<p class="ball-loading" id="ballLoading" aria-live="polite">LOADING MATCH BALL <span>0%</span></p>
+
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a class="nav__brand" href="#top" title="{{tournamentName}}"><span class="nav__dot" aria-hidden="true"></span><span class="nav__name">{{tournamentName}}</span></a>
+  <ul class="nav__links">
+    <li><a href="#details">Details</a></li>
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#venue">Venue</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a class="nav__nyxo" href="/nyxo.html">Build your own website</a></li>
+  </ul>
+  <a class="nav__cta" href="#register">Register</a>
+  <button class="nav__burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
+</nav>
+<div class="menu" id="menu" hidden>
+  <ul>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#venue">Venue</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a class="nav__nyxo" href="/nyxo.html">Build your own website</a></li>
+  </ul>
+  <p>{{dateLong}} · {{venue}}, {{localityShort}}</p>
+</div>
+
+<main id="main">
+
+<!-- A · HERO -->
+<header class="hero" id="top" data-pose="hero">
+  <div class="wrap hero__main">
+    <p class="eyebrow rise d1"><span class="eyebrow__line" aria-hidden="true"></span>{{tournamentName}}</p>
+    <h1 class="hero__title rise d2"><span>THE BATTLE</span> <span class="outline">FOR GLORY.</span></h1>
+    <div class="prize rise d3">
+      <p class="prize__label">PRIZE POOL</p>
+      <p class="prize__value {{prizeClass}}" aria-label="Prize pool: {{prizeAria}}">{{prizePool}}</p>
+    </div>
+    <div class="hero__cta rise d4">
+      <a class="btn" href="#register">REGISTER YOUR TEAM <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></a>
+      {{{daysHtml}}}
+    </div>
+  </div>
+  <ul class="wrap facts rise d5">
+    <li><span>DATE</span><b>{{dateDay}} {{dateMonth}} {{dateYear}}</b></li>
+    <li><span>VENUE</span><b>{{venue}}, {{localityShort}}</b></li>
+    <li><span>FORMAT</span><b>{{side}} FOOTBALL</b></li>
+    <li><span>ENTRY FEE</span><b>{{fee}} / TEAM</b></li>
+    <li><span>AGE GROUP</span><b>{{age}}</b></li>
+  </ul>
+</header>
+
+<section class="seq" id="sequence" data-pose="seq" data-active="0" aria-label="Tournament journey">
+  <div class="seq__sticky">
+    <p class="seq__hint">SCROLL TO SPIN</p>
+    <div class="seq__stage" data-stage="0"><p>ONE</p><p>GROUND.</p></div>
+    <div class="seq__stage" data-stage="1"><p>ONE</p><p>CHAMPION.</p></div>
+    <div class="seq__stage" data-stage="2"><p>YOUR TIME</p><p>TO PROVE IT.</p></div>
+    <div class="seq__rail" aria-hidden="true"><span id="seqProgress"></span></div>
+  </div>
+</section>
+
+<!-- C · TOURNAMENT DETAILS -->
+<section class="details" id="details" data-pose="details">
+  <div class="wrap">
+    <p class="kicker reveal"><b>01</b> THE TOURNAMENT</p>
+    <div class="stats">
+      <article class="stat stat--a reveal"><p class="stat__num"><span>{{playersPerSide}}</span><small>-A-SIDE</small></p><p class="stat__label">FORMAT</p></article>
+      <article class="stat stat--b reveal"><p class="stat__num outline"><span><i class="rs">₹</i>{{feeNum}}</span></p><p class="stat__label">ENTRY / TEAM</p></article>
+      <article class="stat stat--c reveal"><p class="stat__num outline"><span>{{age}}</span></p><p class="stat__label">AGE GROUP</p></article>
+      <article class="stat stat--d reveal"><p class="stat__num"><span>{{dateDay}}</span><small>{{dateMon}}</small></p><p class="stat__label">MATCH DAY · {{dateYear}}</p></article>
+    </div>
+  </div>
+</section>
+
+{{{announcementsHtml}}}
+
+<!-- TEAMS -->
+<section class="teams" id="teams" data-pose="teams">
+  <div class="wrap">
+    <div class="teams__head">
+      <div>
+        <p class="kicker reveal"><b>02</b> THE LINE-UP</p>
+        <h2 class="h2 reveal">CURRENTLY<br><span class="lime">PARTICIPATING.</span></h2>
+      </div>
+      <p class="teams__count reveal"><b>{{teamCount}}</b><span>{{teamCountLabel}}</span></p>
+    </div>
+    {{{teamsHtml}}}
+  </div>
+</section>
+
+<!-- D · VENUE -->
+<section class="venue" id="venue" data-pose="venue">
+  <svg class="venue__pitch" viewBox="0 0 600 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="10" y="10" width="580" height="380"/><line x1="300" y1="10" x2="300" y2="390"/><circle cx="300" cy="200" r="50"/><rect x="10" y="110" width="80" height="180"/><rect x="510" y="110" width="80" height="180"/><rect x="10" y="155" width="30" height="90"/><rect x="560" y="155" width="30" height="90"/></g><circle cx="300" cy="200" r="4" fill="currentColor"/></svg>
+  <div class="wrap">
+    <p class="kicker reveal"><b>03</b> THE VENUE</p>
+    <h2 class="venue__name reveal">{{venue}}</h2>
+    <p class="venue__addr reveal">{{locality}}<br>{{region}}</p>
+    <div class="venue__meta reveal">
+      <p><span>MATCH DAY</span><b>{{dateDay}} {{dateMonth}} {{dateYear}}</b></p>
+      <p><span>FORMAT</span><b>{{side}}</b></p>
+    </div>
+    {{{directionsHtml}}}
+  </div>
+</section>
+
+<!-- E · REGISTRATION -->
+<section class="register" id="register" data-pose="register">
+  <div class="wrap">
+    <p class="kicker reveal"><b>04</b> REGISTRATION</p>
+    <h2 class="h2 reveal">REGISTER<br><span class="lime">YOUR TEAM.</span></h2>
+    <div class="contact reveal">
+      <p class="contact__label">ORGANIZER CONTACT</p>
+      {{{contactHtml}}}
+    </div>
+    <p class="register__note reveal">{{registerNote}}</p>
+    <ul class="register__facts reveal">
+      <li><span>ENTRY FEE</span><b>{{fee}} / TEAM</b></li>
+      <li><span>AGE GROUP</span><b>{{age}}</b></li>
+      <li><span>FORMAT</span><b>{{side}}</b></li>
+      <li><span>DATE</span><b>{{dateDay}} {{dateMon}} {{dateYear}}</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- F · FAQ -->
+<section class="faq" id="faq" data-pose="faq">
+  <div class="wrap faq__grid">
+    <div>
+      <p class="kicker reveal"><b>05</b> FAQ</p>
+      <h2 class="h2 reveal">GOT<br><span class="lime">QUESTIONS?</span></h2>
+    </div>
+    <div class="faq__list reveal">
+      {{{faqHtml}}}
+    </div>
+  </div>
+</section>
+
+<!-- G · FINAL CTA -->
+<section class="final" id="final" data-pose="final">
+  <div class="wrap">
+    <h2 class="final__title reveal">READY TO OWN<br><span class="lime">THE PITCH?</span></h2>
+    <ul class="final__facts reveal">
+      <li><span>DATE</span><b>{{dateDay}} {{dateMonth}} {{dateYear}}</b></li>
+      <li><span>ENTRY FEE</span><b>{{fee}} / TEAM</b></li>
+      <li><span>AGE GROUP</span><b>{{age}}</b></li>
+    </ul>
+    <a class="btn btn--xl reveal" href="#register">REGISTER YOUR TEAM <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="foot__name">{{tournamentName}}</p>
+    <p>{{venue}}, {{locality}}, {{region}}</p>
+    <div class="foot__creator">
+      <p>WEBSITE BUILT BY <b>VARUN (NYXO)</b></p>
+      <a href="/nyxo.html">BUILD YOUR OWN WEBSITE <span aria-hidden="true">↗</span></a>
+    </div>
+    <a href="/admin" class="foot__admin" rel="nofollow">Organizer login</a>
+  </div>
+</footer>
+
+<noscript><style>.faq__a{grid-template-rows:1fr!important;visibility:visible!important}.reveal,.rise{opacity:1!important;transform:none!important}</style></noscript>
+<script src="/js/format.js?v={{assetVersion}}" defer></script>
+<script src="/js/site.js?v={{assetVersion}}" defer></script>
+<script type="application/json" id="boot">{"count":{{frameCount}},"version":"{{frameVersion}}"}</script>
+<script src="/js/ball.js?v={{assetVersion}}" defer></script>
+</body>
+</html>

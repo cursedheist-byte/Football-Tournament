@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "views/**/*"
+    }
+  },
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/api/:path*", "destination": "/api/index?path=/api/:path*" },
+    { "source": "/healthz", "destination": "/api/index?path=/healthz" },
+    { "source": "/js/format.js", "destination": "/api/index?path=/js/format.js" },
+    { "source": "/", "destination": "/api/index?path=/" }
+  ]
+}
