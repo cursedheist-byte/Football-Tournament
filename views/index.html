@@ -28,7 +28,7 @@
 <nav class="nav" id="nav" aria-label="Primary">
   <a class="nav__brand" href="#top" title="{{tournamentName}}"><span class="nav__dot" aria-hidden="true"></span><span class="nav__name">{{tournamentName}}</span></a>
   <ul class="nav__links">
-    <li><a href="#details">Details</a></li>
+    <li><a href="#matchday">Matchday</a></li>
     <li><a href="#teams">Teams</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#register">Register</a></li>
@@ -40,7 +40,7 @@
 </nav>
 <div class="menu" id="menu" hidden>
   <ul>
-    <li><a href="#details">Details</a></li>
+    <li><a href="#matchday">Matchday</a></li>
     <li><a href="#teams">Teams</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#register">Register</a></li>
@@ -55,15 +55,27 @@
 <!-- A · HERO -->
 <header class="hero" id="top" data-pose="hero">
   <div class="wrap hero__main">
-    <p class="eyebrow rise d1"><span class="eyebrow__line" aria-hidden="true"></span>{{tournamentName}}</p>
-    <h1 class="hero__title rise d2"><span>THE BATTLE</span> <span class="outline">FOR GLORY.</span></h1>
-    <div class="prize rise d3">
-      <p class="prize__label">PRIZE POOL</p>
-      <p class="prize__value {{prizeClass}}" aria-label="Prize pool: {{prizeAria}}">{{prizePool}}</p>
+    <div class="hero__copy">
+      <p class="eyebrow rise d1"><span class="eyebrow__line" aria-hidden="true"></span>{{tournamentName}}</p>
+      <h1 class="hero__title rise d2"><span>THE BATTLE</span> <span class="outline">FOR GLORY.</span></h1>
+      <p class="hero__intro rise d2">One ground. One champion. Your moment to make it count.</p>
+      <div class="prize rise d3">
+        <p class="prize__label">PRIZE POOL</p>
+        <p class="prize__value {{prizeClass}}" aria-label="Prize pool: {{prizeAria}}">{{prizePool}}</p>
+      </div>
+      <div class="hero__cta rise d4">
+        <a class="btn" href="#register">REGISTER YOUR TEAM <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></a>
+        {{{daysHtml}}}
+      </div>
     </div>
-    <div class="hero__cta rise d4">
-      <a class="btn" href="#register">REGISTER YOUR TEAM <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></a>
-      {{{daysHtml}}}
+    <aside class="hero__spotlight rise d3" aria-label="Tournament matchday feature">
+      <div class="spotlight__top"><span>UP NEXT</span><span>01 / {{dateMonth}} / {{dateYear}}</span></div>
+      <div class="spotlight__pitch" aria-hidden="true"><i></i><b></b><span></span></div>
+      <div class="spotlight__bottom">
+        <p>{{venue}} · {{localityShort}}</p>
+        <h2>ONE DAY.<br>ONE CUP.</h2>
+        <a href="#matchday">OPEN MATCHDAY <span aria-hidden="true">↘</span></a>
+      </div>
     </div>
   </div>
   <ul class="wrap facts rise d5">
@@ -74,6 +86,33 @@
     <li><span>AGE GROUP</span><b>{{age}}</b></li>
   </ul>
 </header>
+
+<section class="matchday" id="matchday" data-pose="news" aria-labelledby="matchdayTitle">
+  <div class="wrap">
+    <div class="matchday__head">
+      <div><p class="kicker"><b>01</b> THE FIXTURE</p><h2 id="matchdayTitle">NEXT UP.<br><span>YOUR MOMENT.</span></h2></div>
+      <a class="text-cta" href="#register">REGISTER A TEAM <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="matchday__grid">
+      <article class="fixture-card">
+        <div class="fixture-card__date"><span>TOURNAMENT DAY</span><b>{{dateDay}}</b><small>{{dateMonth}} {{dateYear}}</small></div>
+        <div class="fixture-card__main">
+          <div class="fixture-card__tag"><i aria-hidden="true"></i> REGISTRATION OPEN</div>
+          <h3>{{tournamentName}}</h3>
+          <p>{{venue}}, {{locality}}</p>
+          <div class="fixture-card__meta"><span>{{side}} FOOTBALL</span><span>{{age}} YEARS</span><span>{{fee}} / TEAM</span></div>
+        </div>
+        <a class="fixture-card__arrow" href="#register" aria-label="Register for the tournament">↗</a>
+      </article>
+      <aside class="matchday__snapshot" aria-label="Tournament snapshot">
+        <div class="snapshot__top"><span>TOURNAMENT CENTER</span><span>2026</span></div>
+        <div class="snapshot__teams"><b>{{teamCount}}</b><span>{{teamCountLabel}}</span></div>
+        <p>Every team starts level. The next name on the board could be yours.</p>
+        <a href="#teams">VIEW THE LINE-UP <span aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
+  </div>
+</section>
 
 <section class="seq" id="sequence" data-pose="seq" data-active="0" aria-label="Tournament journey">
   <div class="seq__sticky">
