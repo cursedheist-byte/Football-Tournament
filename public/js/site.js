@@ -13,7 +13,7 @@
     name.textContent = 'VARUN (NYXO)';
     credit.appendChild(name);
     var link = document.createElement('a');
-    link.href = '/nyxo.html';
+    link.href = 'https://nyxo-portfolio.vercel.app/';
     link.appendChild(document.createTextNode('BUILD YOUR OWN WEBSITE '));
     var arrow = document.createElement('span');
     arrow.setAttribute('aria-hidden', 'true');
@@ -26,10 +26,10 @@
 
   // Keep the standalone creator page easy to find from both navigation layouts.
   document.querySelectorAll('.nav__links, .menu ul').forEach(function (list) {
-    if (!list.querySelector('a[href="/nyxo.html"]')) {
+    if (!list.querySelector('a[href="https://nyxo-portfolio.vercel.app/"]')) {
       var item = document.createElement('li');
       var link = document.createElement('a');
-      link.href = '/nyxo.html';
+      link.href = 'https://nyxo-portfolio.vercel.app/';
       link.className = 'nav__nyxo';
       link.textContent = 'Build your own website';
       item.appendChild(link);
